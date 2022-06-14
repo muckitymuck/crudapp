@@ -1,3 +1,4 @@
+const { response } = require('express')
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
@@ -19,6 +20,21 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+
+
+app.get('/', (request,response) => {
+    let contents = db.collection('alien-info').find().toArray()
+
+    console.log(contents)
+})
+
+app.post('/api', (request,response) => {
+
+})
+
+app.put('/updateEntry', (request,response) => {
+    
+})
 
 
 app.listen(process.env.PORT || PORT, () => {
